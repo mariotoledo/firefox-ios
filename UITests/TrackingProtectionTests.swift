@@ -42,7 +42,7 @@ class TrackingProtectionTests: KIFTestCase {
         EarlGrey.select(elementWithMatcher: grey_accessibilityID("url")).perform(grey_tap())
         EarlGrey.select(elementWithMatcher: grey_accessibilityID("address")).perform(grey_replaceText(url))
         EarlGrey.select(elementWithMatcher: grey_accessibilityID("address")).perform(grey_typeText("\n"))
-        
+
         let dialogAppeared = GREYCondition(name: "Wait for JS dialog") {
             var errorOrNil: NSError?
             EarlGrey.select(elementWithMatcher: grey_accessibilityLabel("OK"))
@@ -61,7 +61,7 @@ class TrackingProtectionTests: KIFTestCase {
             EarlGrey.select(elementWithMatcher: grey_accessibilityLabel("image loaded."))
             .assert(grey_notNil())
         }
-        
+
         EarlGrey.select(elementWithMatcher: grey_accessibilityLabel("OK"))
             .inRoot(grey_kindOfClass(NSClassFromString("_UIAlertControllerActionView")!))
             .assert(grey_enabled())
@@ -82,7 +82,7 @@ class TrackingProtectionTests: KIFTestCase {
 
         let success = menuAppeared?.wait(withTimeout: 20)
         GREYAssertTrue(success!, reason: "Failed to display settings dialog")
-        
+
         // Scroll to Tracking Protection Menu
         EarlGrey.select(elementWithMatcher:grey_accessibilityLabel("Tracking Protection"))
             .using(searchAction: grey_scrollInDirection(GREYDirection.down, 200),
@@ -150,7 +150,6 @@ class TrackingProtectionTests: KIFTestCase {
         openTPSetting()
         EarlGrey.select(elementWithMatcher: grey_accessibilityID("prefkey.trackingprotection.normalbrowsing")).perform(grey_turnSwitchOn(false))
         closeTPSetting()
-
     }
     
     func testPrivateTabPageTrackingProtection() {
